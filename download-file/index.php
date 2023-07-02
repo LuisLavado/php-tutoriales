@@ -12,7 +12,7 @@ $xlsx_path = 'storage/xlsx-archivo.xlsx';
 
 $xml_url = 'https://cpe.sunat.gob.pe/sites/default/files/inline-files/liquidacion%20modelo.xml';
 $xml_path = 'storage/xml-archivo.xml';
-downloadFile($xml_url, $xml_path);
+// downloadFile($xml_url, $xml_path);
 
 function downloadFile($url, $destination_path) {
     if (file_put_contents($destination_path, file_get_contents($url))) {
@@ -21,5 +21,21 @@ function downloadFile($url, $destination_path) {
         exit;
     } else {
         die("No se pudo descargar el archivo");
+    }
+}
+
+
+downloadFile2($pdf_path);
+function downloadFile2($file)
+{
+    if (file_exists($file)) {
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/pdf');    
+        header('Content-Disposition: attachment; filename="'.basename($file).'"');  
+        header('Content-Length:'.filesize($file));
+        readfile($file);
+        exit;   
+    } else {
+        die("El archivo no existe.");
     }
 }
