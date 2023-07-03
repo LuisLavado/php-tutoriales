@@ -25,7 +25,7 @@ function downloadFile($url, $destination_path) {
 }
 
 
-downloadFile2($pdf_path);
+// downloadFile2($pdf_path);
 function downloadFile2($file)
 {
     if (file_exists($file)) {
